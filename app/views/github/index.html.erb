@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
+<head>
+  <title>GetHub</title>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="nm-navbar navbar navbar-default" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">GetHub</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><p class="navbar-text"><%= current_user.github %></p></li>
+            <li><%= link_to "LOGOUT", destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to content_tag(:i, "", :class=> "fa fa-github-square gray") + " Login", omniauth_authorize_path('user', :github) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="flash">
+      <% if alert %> <div id="alert" class="alert alert-warning text-center"> <%= alert %> </div> <% end %>
+      <% if notice %> <div id="notice" class="alert alert-success text-center"> <%= notice %> </div> <% end %>
+    </div>
+
+    <div id="react">
+      <i class="fa fa-spin fa-spinner fa-2x"></i>
+    </div>
+  </div>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="/react/react.js"></script>
+  <script src="/react/JSXTransformer.js"></script>
+  <script type="text/jsx" src="/react/main.js"></script>
+</body>
+</html>

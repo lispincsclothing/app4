@@ -4,14 +4,13 @@ var Main = React.createClass({
   },
   updateCards: function(component) {
     var that = this;
-    $.ajax("http://localhost:3000/users").then(function(response) {
-      console.log(response);
+    $.ajax("/users").then(function(response) {
       component.setState({cards: response});
       setTimeout(function() {
         that.updateCards(component);
       }, 3000);
     }, function(error) {
-      console.log(erroir);
+      console.log(error);
     });
   },
   componentDidMount: function() {
