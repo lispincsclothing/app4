@@ -34,12 +34,19 @@ var Main = React.createClass({
 var Card = React.createClass({
   render: function() {
     var data = this.props.cardData;
+    var languages = data.current_languages;
+    var languagesMarkup = languages.map(function(lang) {
+      return (
+        <li>{lang}</li>
+      );
+    });
     return (
       <div className="one-card col-sm-4">
         <div className="">
           <img src={data.avatar_url} height="120" alt="..." />
           <div className="caption">
             <h3>{data.first_name} {data.last_name}</h3>
+            <ul>{languagesMarkup}</ul>
           </div>
         </div>
       </div>
