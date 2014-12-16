@@ -1,18 +1,27 @@
-var ExampleApplication = React.createClass({
+var Main = React.createClass({
   render: function() {
-    var elapsed = Math.round(this.props.elapsed  / 100);
-    var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
-    var message = 'React has been successfully running for ' + seconds + ' seconds.';
-
-    return <i>{message}</i>;
+    return (
+      <div className="main">
+        GetHub App
+        <Card first_name="" last_name="" avatar_url="" />
+      </div>
+    );
   }
 });
 
-var start = new Date().getTime();
+var Card = React.createClass({
+  render: function() {
+    return (
+      <div className="card">
+        This is {this.props.name}
+      </div>
+    );
+  }
+});
 
-setInterval(function() {
+$(function() {
   React.render(
-    <ExampleApplication elapsed={new Date().getTime() - start} />,
+    <Main />,
     document.getElementById('react')
   );
-}, 50);
+});
