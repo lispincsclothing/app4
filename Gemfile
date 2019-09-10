@@ -38,6 +38,6 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'omniauth-github'
 gem 'rails_12factor'
